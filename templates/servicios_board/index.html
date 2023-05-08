@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+{% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+<h1 class="text-center">Conozca los servicios proporcionados por nuestras divisiones</h1>
+<h4 class="text-center">Un subtitulo H2</h4>
+    <div class="fluid py-3">
+        <div class="card" style="background-color: antiquewhite;">
+            <div class="card-body">
+                <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                    <div class="card">
+                        <a href="{% url 'recuperacion_datos' %}" class="text-reset">
+                            <img src="/media/drhdd.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">HM-NET - Recupero de datos</h5>
+                                    <p class="card-text">Servicio Profesional de recuperacion de datos:</p>
+                                    <ul>
+                                        <li>Recupero de datos de discos rigidos, discos solidos, NAS, RAIDs, memorias, y demas medios de almacenamiento.</li>
+                                        <li>Dispositivos con fallas logicas, electronicas, fisicas y a nivel firmware.</li>
+                                        <li>Borrado Seguro de Datos</li>
+                                        <li>Servicios de Urgencias y Prioritarios</li>
+                                        <li>Recuperacion de datos de maquinas industriales y aparatos de diagnostico medico.</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                    <div class="card">
+                        <a href="{% url 'electronics' %}" class="text-reset">
+                            <img src="/media/hm-net_electronics.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">HM-NET Electronics</h5>
+                                    <p class="card-text">Servicio de reparacion de dispositivos electronicos en general. Especialidad en reparacion:</p>
+                                        <ul>
+                                            <li>Reparacion de parlantes potenciados JBL, BOSE, Sony, Marshall, Harman Kardon, B&O, etc.</li>
+                                            <li>Reparacion de pedales y pedaleras multiefecto para guitarras electricas y bajos.</li>
+                                            <li>Reparacion integral de Joysticks y controles de Play Station - PS4 y PS5.</li>
+                                            <li>Reparacion de Fuentes y placas electronicas en general.</li>
+                                        </ul>
+                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                    <div class="card">
+                        <a href="{% url 'dev' %}" class="text-reset">
+                            <img src="/media/code.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">HM-NET Dev</h5>
+                                    <p class="card-text">Desarrollo de software a medida:
+                                        <ul>
+                                            <li>Web Apps.</li>
+                                            <li>Sistemas de ventas, control de stocks y administracion.</li>
+                                            <li>Ecomerce.</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col">
+                    <div class="card">
+                        <a href="{% url 'store_index' %}" class="text-reset">
+                            <img src="/media/ecomerce.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">HM-NET Store</h5>
+                                        <p class="card-text">Visita nuestro store, podras encontrar: 
+                                            <ul>
+                                                <li>Filtros Para coolers</li>
+                                                <li>Software</li>
+                                                <li>Repuestos</li>
+                                            </ul>
+                                        </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>        
+        </div>
+    </div>
+
+{% endblock %}

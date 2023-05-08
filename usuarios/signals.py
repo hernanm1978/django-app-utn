@@ -1,0 +1,26 @@
+"""
+Signals:
+pre_save    -> para grabar un instante antes
+post_save   -> para grabar un instante despues
+@receiver() -> el decorador para poder usar signals
+"""
+from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from usuarios.models import Datosusuario
+
+@receiver(post_save, sender=User)
+def crete_datosusuario(sender, instance, created, **kwargs):
+    
+    if created:
+        Datosusuario.objects.create(usuario=instance)
+        print("Se han creado los datos")
+
+@receiver(post_save, sender=User)
+def update_datosusuario(sender, instance, created, **kwargs):
+    
+    if created == False:
+    
+        instance.datosusuario.save
+        print("Se han ACTUALIZADO los datos")

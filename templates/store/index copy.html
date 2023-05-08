@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<h1 class="text-center">HM-NET Store</h1>
+<h4 class="text-center">Un subtitulo H4 lalalal</h4>
+<div class="fluid py-3">
+  <div class="card" style="background-color: antiquewhite;">
+    <div class="card-body">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+          {% for p in productos_store %}
+            <div class="col py-2">
+              <div class="card">
+                <img src="/media/{{p.imagen}}" class="img-thumbnail" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{p.producto}}</h5>
+                  <p class="card-text">{{p.descripcion}}</p>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

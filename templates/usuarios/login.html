@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block title %}Contacto{% endblock %}
+{% load static %}
+{% load i18n %}
+{% block login %}
+
+
+<title>reCAPTCHA demo: Simple page</title>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<div class="container-fluid">
+	<div class="row gx-4 gx-lg-5 row-cols-3 row-cols-xsd-1 row-cols-sd-1 row-cols-md-4 row-cols-xl-4 justify-content-center">
+		
+			<div class="card" style="border-color: #25A2C7; background-color: #F0F0F0; width: 50%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+
+				<div class="card-body fluid p-2 ">
+					<div class="text-center">
+						
+						<main class="form-signin">
+							<form method="POST" action="">{% csrf_token %}
+
+								<img class="mb-3" src="{% static 'img/login.png' %}" alt="" width="70" height="70">
+								<h1 class="h3 mb-3 fw-normal">Iniciar Sesion</h1>
+								{% for message in messages %}
+								<div class="alert alert-danger" role="alert">
+								  <i class="fa-solid fa-circle-exclamation fa-beat"></i>
+								   {{message}}
+								</div>
+								{% endfor %}
+								<div class="form-floating mb-3">
+								<input type="text" class="form-control" id="floatingInput" placeholder="nombre" name="username">
+								<label for="floatingInput"><i class="fa-solid fa-user"></i> Usuario</label>
+								</div>
+								<div class="form-floating mb-2">
+								<input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+								<label for="floatingPassword"><i class="fa-solid fa-lock"></i> Password</label>
+								</div>
+								<div class="checkbox mb-3">
+								{% comment %} <label>
+									<input type="checkbox" value="remember-me"> Recordarme
+								</label> {% endcomment %}
+								</div>
+								<center>
+								<div class="g-recaptcha" data-sitekey={{captcha_public_key}}></div>
+								</center>
+								<br>
+								<button class="btn btn-lg btn-primary" type="submit">
+									Ingresar
+								</button>
+									<br>
+									<br>
+								<div class="border-top pt-3">
+									<small class="text-muted">
+										No Tenes Cuenta? <a class="ml-2" href="{% url 'registro' %}">Registrate Ahora</a>
+									</small><br>
+									<small class="text-muted">
+										<a href="/">Olvidaste tu contraseña?</a>
+									</small>
+								</div>
+								{% comment %} <div class="border-top pt-3">
+									<small class="text-muted">
+										HM-NET © 2001–2023
+									</small><br>
+								</div> {% endcomment %}
+							</form>
+						
+						</main>
+					</div>
+				</div>
+			</div>	
+		
+	</div>
+</div>
+
+{% endblock %}

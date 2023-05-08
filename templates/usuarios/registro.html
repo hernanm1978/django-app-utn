@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block title %}HM-NET - Formulario de Registro de Usuario{% endblock %}
+{% load static %}
+{% load i18n %}
+{% block registro %}
+{% comment %} <head>
+  <title>reCAPTCHA demo: Simple page</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head> {% endcomment %}
+<div class="container-fluid">
+  <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      <div class="card" style="border-color: #25A2C7; background-color: #F0F0F0; width: 50%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        <div class="card-body fluid p-2">
+          <div class="text-center">
+            <main class="form-signin">
+              <form method="POST" action="">{% csrf_token %}
+                <img class="mb-3" src="{% static 'img/registro.png' %}" alt="" width="70" height="70"/>
+                <h1 class="h3 mb-3 fw-normal">Registro</h1>
+                <div class="form-floating mb-3">
+                  {{form.username}}
+                <!--<input type="text" class="form-control" id="floatingInput" placeholder="nombre" name="username"/>-->
+                <label for="floatingInput"><i class="fa-solid fa-user"></i> Nombre de Usuario</label>
+                </div>
+                <div class="form-floating mb-3">
+                  {{form.email}}
+                  <!--<input type="email" class="form-control" id="floatingInput" placeholder="email" name="{form.email}"/>-->
+                  <label for="floatingInput"><i class="fa-solid fa-envelope"></i> Email</label>
+                </div>
+                <div class="form-floating mb-2">
+                  {{form.password1}}
+                  <!--<input type="password" class="form-control" id="floatingPassword" placeholder="Password1" name="{form.password1}">-->
+                  <label for="floatingPassword"><i class="fa-solid fa-lock"></i> Password</label>
+                  </div>
+                <div class="form-floating mb-2">
+                  {{form.password2}}
+                  <!--<input type="password" class="form-control" id="floatingPassword" placeholder="Password2" name="{form.password2}">-->
+                  <label for="floatingPassword"><i class="fa-solid fa-lock"></i> Reingrese el Password</label>
+                </div>
+                {% comment %} <div class="form-floating mb-2"> {% endcomment %}
+                <br>
+                <center>
+                <div class="g-recaptcha"  data-sitekey={{captcha_public_key}}></div>
+                </center>
+                {% comment %} </div> {% endcomment %}
+                {% comment %} <div class="form-floating mb-2">
+                  {{form.captcha}}
+                  <!--<input type="password" class="form-control" id="floatingPassword" placeholder="Password2" name="{form.password2}">-->
+                  <label for="floatingPassword"><i class="fa-solid fa-lock"></i> Reingrese el Password</label>
+                </div> {% endcomment %}
+
+                <br>
+                <button class="btn btn-lg btn-primary" type="submit">
+                  Registrarse
+                </button>
+              </form>
+            </main>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+ 
+
+{% comment %} <div class="fluid py-3">
+    <div class="card" style="background-color: antiquewhite;">
+        <div class="card-body">
+        <h1>HOLA ESTOY EN REGISTRO</h1>
+        <form method="POST" action="">{% csrf_token %}
+          {{form}}
+          <button type="submit" class="btn btn-danger float-right">
+            Registrar
+          </button>
+        </form>
+        </div>
+    </div>
+</div>   {% endcomment %}
+
+   
+{% comment %} <section class="container-fluid ">
+    <div class="row" style="padding-top:10px; ">
+        <div class="col-12" style="padding:0px;  ">
+           <br/> 
+        </div>
+    </div>
+</section> {% endcomment %}
+   
+  
+
+
+
+{% endblock %}

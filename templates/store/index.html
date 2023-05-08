@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+
+
+<!-- Section-->
+<section class="py-5">
+  <div class="container-fluid">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for p in productos_store %}
+        {% comment %}         
+        {% if p.estado_actual == "Publicado" %}
+        {% endcomment %}
+        <div class="col mb-5">
+              <div class="card h-100">
+                  <!-- Product image-->
+                  <img class="card-img-top" src="/media/{{p.imagen}}" alt="..." />
+                  <!-- Product details-->
+                  <div class="card-body fluid p-1">
+                      <div class="text-center">
+                          <!-- Product name-->
+                          <h5 class="fw-bolder">{{p.producto}}</h5>
+                          <div class="d-flex justify-content-center small text-warning mb-1">
+                            <div class="bi-star-fill">★</div>
+                            <div class="bi-star-fill">★</div>
+                            <div class="bi-star-fill">★</div>
+                            <div class="bi-star-fill">★</div>
+                          </div>
+                          <p><a class="fw-bolder" style="font-size: small;">{{p.descripcion_corta}}</a></p>
+                          
+                          <!-- Product price-->
+                          ${{p.precio}}
+                        </div>
+                    </div>
+                  <!-- Product actions-->
+                  <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    {% comment %} {% if request.user.is_authenticated %} {% endcomment %}
+                      <div class="text-center"><a class="btn btn-outline-dark mt-auto" style="background-color:#25A2C7" href="{% url 'ver-producto-ls' producto_id=p.id %}">Ver Mas</a></div>
+                    {% comment %} {% else %}
+                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" style="background-color:#898ED9" href="{% url 'login' %}">Ver Mas</a></div>
+                    {% endif %} {% endcomment %}
+                  </div>
+                  
+              </div>
+        </div>
+      {% comment %} {% else %} {% endcomment %}
+      {% comment %} {% endif %} {% endcomment %}
+      {% endfor %}  
+      </div>
+  </div>
+</section>
+
+{% endblock %}

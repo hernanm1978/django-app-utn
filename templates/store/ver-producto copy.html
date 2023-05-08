@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+
+
+<!-- Section-->
+{% if producto.estado_actual == "Publicado" %}
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5" style="background-color:#FFFFFF;">
+    <br>
+      <div class="row gx-4 gx-lg-5 align-items-center">
+          <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/media/{{producto.imagen}}" alt="..." /></div>
+          <div class="col-md-6" style="background-color:#FFFFFF;">
+              <div class="small mb-1">SKU: BST-498</div>
+              <h1 class="display-5 fw-bolder">{{producto.producto}}</h1>
+              <div class="fs-5 mb-5">
+                  {% comment %} <span class="text-decoration-line-through">{{producto.precio}}</span> {% endcomment %}
+                  <span>${{producto.precio}}</span>
+              </div>
+              <p class="lead">{{producto.descripcion}}</p>
+              <div class="d-flex">
+                  <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                  <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                      <i class="bi-cart-fill me-1"></i>
+                      <a href="{% url 'store_index' %}">Agregar al carrito</a>
+                  </button>
+              </div>
+          </div>
+      </div>
+      <br>
+  </div>
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="col text-center">
+      <div class="text-center"><a class="btn btn-outline-dark mt-auto" style="background-color:#D8D5D5;" href="{% url 'store_index' %}">Volver</a>
+    </div>
+  </div>
+</section>
+
+<!-- Related items section-->
+
+</section>
+      {% else %}
+      {% endif %}
+
+{% endblock %}

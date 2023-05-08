@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block ver_productos_backend %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            {% for i in productos %}
+                <li>{{i.producto}}</li>
+
+                <li>{{i.estado_actual}}</li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+
+
+<!-- Section-->
+{% if producto.estado_actual == "Publicado" %}
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5" style="background-color:#FFFFFF;">
+    <br>
+      <div class="row gx-4 gx-lg-5 align-items-center">
+          <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/media/{{producto.imagen}}" alt="..." /></div>
+          <div class="col-md-6" style="background-color:#FFFFFF;">
+              <div class="small mb-1">SKU: BST-498</div>
+              <h1 class="display-5 fw-bolder">{{producto.producto}}</h1>
+              <div class="fs-5 mb-5">
+                  {% comment %} <span class="text-decoration-line-through">{{producto.precio}}</span> {% endcomment %}
+                  <span>${{producto.precio}}</span>
+              </div>
+              <p class="lead">{{producto.descripcion}}</p>
+              <div class="d-flex">
+                  <input class="form-control text-center me-3 vervalor" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                  {% comment %} <form action="/store/{{producto.id}}/ver/" method="post">{% csrf_token %} {% endcomment %}
+                  <input type="submit"  hidden class="col-12 verid" value="hmstore_{{producto.id}}"/>
+                  <input type="submit"  hidden class="col-12" value="1"/>
+                  {% if request.user.is_authenticated %}
+                    <button type="button" class="btn btn-outline-dark flex-shrink-0 agregar">Agregar al carrito</button>
+                  {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-dark flex-shrink-0">Login</a>
+                  {% endif %}  
+                  {% comment %} </form> {% endcomment %}
+                      <i class="bi-cart-fill me-1"></i>
+                      {% comment %} <a href="{% url 'store_index' %}">Agregar al carrito</a> {% endcomment %}
+                  {% comment %} </button> {% endcomment %}
+              </div>
+          </div>
+      </div>
+      <br>
+  </div>
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="col text-center">
+      <div class="text-center"><a class="btn btn-outline-dark mt-auto" style="background-color:#D8D5D5;" href="{% url 'store_index' %}">Volver</a>
+    </div>
+  </div>
+  {% comment %} <script>
+    localStorage.setItem('hola','hernan');
+    localStorage.setItem('hmstore_item_prueba','10');
+    var persona = localStorage.getItem('hola');
+    console.log(persona)
+  </script> {% endcomment %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script> 
+
+
+  <script = "text/javascript">
+  /*jslint browser: true*/
+  /*jslint plusplus: true*/
+  /*global FormData: false */
+  /*global $, jQuery, alert, console*/
+  /*..............................................................................................
+  ... PARA VALIDAR LOS DATOS .....................................................
+  .............................................................................................*/
+  var csrftoken = $.cookie('csrftoken');
+  function csrfSafeMethod(method) {
+      "use strict";
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
+  function AgregarI(cada_producto_id, valor) {
+    "use strict";
+
+    console.log(cada_producto_id, valor)
+    $.ajax({
+        beforeSend : function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        },
+        url : "/store/agregar_item/",
+        type : "GET",
+        data : { cada_producto_id:cada_producto_id, valor:valor},
+        success : function (json) {
+            console.log(json[0].idproducto.toString())
+            console.log(json[0].cantidad.toString())
+            localStorage.setItem(json[0].idproducto.toString(), json[0].cantidad.toString());
+            location.reload();
+            console.log("ok++++++++++++++++++++++++");
+            window.location.replace("{% url 'store_index' %}");
+            
+
+        };
+        error : function (xhr, errmsg, err) {
+            console.log('Error en carga de respuesta');
+        }
+    });
+}
+
+
+
+  $('.agregar').click(function (event) {
+    "use strict";
+    event.preventDefault();
+    let prueba="prueba";
+    let cada_producto_id = $(this).parent().find('.verid').val();
+    let valor = $(this).parent().find('.vervalor').val();
+    console.log(cada_producto_id);
+    console.log(valor);
+    console.log(prueba);
+  
+      //PASO 1: Remuevo todo item que no inicia con utn_
+      console.log(JSON.stringify(localStorage));
+      let i;
+      for(i = 0; i < localStorage.length; i++){
+          let clave_eliminar = localStorage.key(i);
+          if(!clave_eliminar.startsWith("hmstore_")){
+              localStorage.removeItem(clave_eliminar);
+              
+              
+          }
+      }
+  
+      //PASO 2: Si es la primera vez que selecciono el valor me quedo con "valor=1"
+      //Si ya existia un valor en la base tomo ese valor en lugar de 1
+      for(i = 0; i < localStorage.length; i++){
+          let clave = localStorage.key(i);
+          let el_valor = localStorage[clave];
+          if(clave == cada_producto_id){
+              console.log("-----1112------")
+              console.log(clave);
+              console.log(valor);
+              valor = el_valor;
+              console.log("-----1112------")
+          }else{
+              console.log("no hay coincidenciaaaa");
+          }   
+      }
+      AgregarI(cada_producto_id, valor);
+      {% comment %} window.location.href = "{% url 'store_index' %}"; {% endcomment %}
+      {% comment %} window.location.replace("{% url 'store_index' %}"); {% endcomment %}
+
+
+
+  });
+  
+  </script>
+
+</section>
+
+<!-- Related items section-->
+{% else %}
+
+{% endif %}
+
+{% endblock  %}
+
+
+
+

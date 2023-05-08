@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+  <div class="row">
+      <div class="col-12 prueba" style="padding-top:200px;">
+
+      </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+      <div class="col-12 prueba">
+        <section id="todos_los_productos" class ="row" >
+            <h2>Seleccionar productossssssssssssssssssss</h2>
+            <hr/>
+            <div id="contenedor_filtros" class="row">
+               <div id="filtros_productos"  class="col-xs-12">
+                   <form id="searchr-form"   action="" method="post" >{% csrf_token  %}
+                       <div class="campo_busqueda col-xs-12 "  >
+                           {{ busqueda }}
+                           <input type="button" id="boton_prod" value="Ver datos"/>
+                       </div>
+                    </form>
+               </div>
+            </div>
+            <div id="contenedor_filtrado" class="col-xs-10 col-sm-offset-2 col-sm-8  
+                                              col-md-offset-4 col-md-4 "></div>
+        </section>
+      </div>
+  </div>
+</div>
+<div class="container">
+<div class="row">
+    <div class="col-12 prueba" style="padding-bottom: 250px;">
+       
+    </div>
+</div>
+</div>
+  <div class="container">
+      <div class="row">
+          <div class="col-12 prueba" style="padding-top:200px;">
+ 
+          </div>
+      </div>
+</div>
+
+{% block scripts %}
+{% comment %} <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/ajax.js' %}"></script> {% endcomment %}
+<script
+src="https://code.jquery.com/jquery-3.6.4.min.js"
+integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+crossorigin="anonymous">
+</script>
+<script
+src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+crossorigin="anonymous">
+</script>
+<script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+{% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  {% endcomment %}
+<script type="text/javascript" src="{% static 'js/ajax.js' %}"></script>
+<script>
+  $('#id_querycom').autocomplete({source:"/store/buscar_producto/"});
+</script>
+
+
+{% endblock %}
+
+{% endblock %}

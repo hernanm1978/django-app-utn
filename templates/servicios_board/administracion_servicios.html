@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+
+
+<h1 class="text-center">Administrador De Servicios</h1>
+<h4 class="text-center">Altas Bajas y Modificaciones Solo Miembros Del Staff</h4>
+<div class="row py-3">
+    <!-- <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4" style="background-color: #CDE1E7;">
+
+    </div> -->
+    <div class="col-12" style="background-color: #f3f6f7;">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!-- <th>#</th> -->
+                        <th>Orden Servicio</th>
+                        <th>Servicio</th>
+                        <th>Dispositivo</th>
+                        <th>Descr. Servicio</th>
+                        <th>Cliente</th>
+                        <th>Estado</th>
+                        <th>Fecha Ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in servicios %}
+                    <tr>
+                        <!-- <td>{{forloop.counter}}</td> -->
+                        <td>{{i.id}}</td>
+                        <td>{{i.servicio}}</td>
+                        <td>{{i.dispositivo}}</td>
+                        <td>{{i.descripcion}}</td>
+                        <td>{{i.cliente}}</td>
+                        <td>{{i.tipo_de_estado}}</td>
+                        <td>{{i.fecha_ingreso}}</td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

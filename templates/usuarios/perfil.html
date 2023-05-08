@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block title %}HM-NET - Perfil de Usuarios{% endblock %}
+{% load static %}
+{% load i18n %}
+{% block perfil %}
+
+
+{% comment %} <div class="container-fluid"   >
+   <div class="row reflexion justify-content-around align-items-center border" style="padding-top:20px;">   
+       <div class="col-12 col-md-5 contacto_form" style="padding-bottom:15px;">
+            <h1 class="h1juan" style="padding-left:15px;">Contacto</h1>     {% endcomment %}
+<div class="fluid py-3">
+    <div class="card" style="background-color: antiquewhite;">
+        <div class="card-body">
+        <h1>HOLA ESTOY EN PERFIL</h1>            
+        
+        </div>
+    </div>
+</div>  
+{% comment %} 
+<form id="contact" action="" method="post">{% csrf_token %} >
+    
+    <!-- Name input -->
+    <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" {{form.nombre}}
+            
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Email" aria-label="Email" {{form.email}}
+        </div>
+        <div class="col">
+        <input type="text" class="form-control" placeholder="Telefono" aria-label="Telefono" {{form.telefono}}
+        </div>
+        <div class="col">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"{{form.descripcion}}</textarea>
+            <label for="floatingTextarea">Consulta</label>
+          </div>
+    </div>
+    <!-- Checkbox -->
+    <div class="form-check d-flex justify-content-center mb-4">
+      <input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked />
+      <label class="form-check-label" for="form4Example4">
+        Send me a copy of this message
+      </label>
+    </div>
+  
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-4" action="" method="post"{% csrf_token %}>Send</button>
+  </form> {% endcomment %}
+   
+<section class="container-fluid ">
+    <div class="row" style="padding-top:10px; ">
+        <div class="col-12" style="padding:0px;  ">
+           <br/> 
+        </div>
+    </div>
+</section>
+   
+  
+
+
+
+{% endblock %}

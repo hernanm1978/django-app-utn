@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}HM-NET - Registro Exitoso{% endblock %}
+{% load i18n %}
+{% block logout %}
+
+<div class="container-fluid py-3">
+  <div class="row reflexion justify-content-center align-items-center; " style="padding-top:30px;">  
+    <div class="card h-100 mb-3" style="border-color: #25A2C7"> 
+          <div>
+              <center>
+                  <h1 style="color:#25A2C7;">Genial! Te diste de alta como usuario!
+                    <br><i class="fa-solid fa-thumbs-up fa-beat"></i></h1>
+                  <p><b>No dudes en contactarte ante cualquier duda</b></p>
+                  <p>Recorda completar el resto de tus datos desde tu perfil para poder operar en nuestra
+                    <b><a href="{% url 'store_index' %}">Tienda</a></b></p>
+              </center>    
+          </div> 
+    </div>
+  </div>
+</div>
+
+{% endblock %}

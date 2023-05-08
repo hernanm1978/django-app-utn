@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block title %}HM-NET - LogOut{% endblock %}
+{% load i18n %}
+{% block logout %}
+
+<div class="container-fluid py-3">
+  <div class="row reflexion justify-content-center align-items-center; " style="padding-top:30px; ">  
+    <div class="card h-100 mb-3" style="border-color: #25A2C7; background-color: #F0F0F0; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"> 
+          <div>
+              <center>
+                  <h1 style="color:#25A2C7;">MUCHAS GRACIAS POR UTILIZAR NUESTROS SERVICIOS!
+                    <br><i class="fa-solid fa-thumbs-up fa-beat"></i></h1>
+                  <p><b>No dudes en contactarnos ante cualquier inquietud.</b></p>
+                  <p>Mientras tanto te invitamos a ver todos nuestros productos en nuestro
+                    <b><a href="{% url 'store_index' %}">Tienda</a>.</b></p>
+              </center>    
+          </div> 
+    </div>
+  </div>
+</div>
+
+{% endblock %}

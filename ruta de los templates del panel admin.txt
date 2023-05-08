@@ -1,0 +1,12 @@
+
+ruta de directorio templates de admin
+
+import sys
+sys.path = sys.path[1:]
+import django
+print(django.__path__)
+
+['C:\\Users\\herna\\anaconda3\\envs\\diplo_django\\lib\\site-packages\\django']
+
+ruta de los templates de admin
+C:\Users\herna\anaconda3\envs\diplo_django\Lib\site-packages\django\contrib\admin\templates\admin
