@@ -4,6 +4,8 @@ from django.shortcuts import render
 from .models import Servicio
 import time
 from store.views import index as fff
+from django.template import RequestContext
+
 
 # Create your views here.
 
@@ -83,7 +85,7 @@ def index(request):
     params["page_title"] = "Home"
     params['servicios'] = Servicio.objects.all()
     params['cantidad_total'] = Servicio.objects.count()
-
+    
 
     return render(request, 'servicios_board/index.html', params)
 
