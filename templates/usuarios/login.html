@@ -8,16 +8,13 @@
 <title>reCAPTCHA demo: Simple page</title>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <div class="container-fluid">
-	<div class="row gx-4 gx-lg-5 row-cols-3 row-cols-xsd-1 row-cols-sd-1 row-cols-md-4 row-cols-xl-4 justify-content-center">
+	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 		
 			<div class="card" style="border-color: #25A2C7; background-color: #F0F0F0; width: 50%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-
 				<div class="card-body fluid p-2 ">
 					<div class="text-center">
-						
 						<main class="form-signin">
 							<form method="POST" action="">{% csrf_token %}
-
 								<img class="mb-3" src="{% static 'img/login.png' %}" alt="" width="70" height="70">
 								<h1 class="h3 mb-3 fw-normal">Iniciar Sesion</h1>
 								{% for message in messages %}

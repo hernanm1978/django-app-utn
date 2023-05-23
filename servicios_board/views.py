@@ -3,8 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidde
 from django.shortcuts import render
 from .models import Servicio
 import time
-from store.views import index as fff
-from django.template import RequestContext
+
 
 
 # Create your views here.
@@ -68,7 +67,7 @@ def administracion_servicios(request):
             return HttpResponseRedirect("/accounts/login/")
             
         except:
-            return HttpResponse("salio mal")
+            return HttpResponse("algo salio mal")
         # finally:
         #     return HttpResponseRedirect("/accounts/login/")
 

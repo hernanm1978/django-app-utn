@@ -30,7 +30,8 @@ urlpatterns = [
     path('store/', include('store.urls')),
     #path('captcha/', include('captcha.urls')),
     path('contacto/', include('contacto.urls')),
-
+    path('carrito/', include('carrito.urls')),
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

@@ -76,7 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'proy_service.context_processors.data_templates',   # AGRGADA PARA TENER A MANO DESDE TEMPLATES EL CAPTCHA PUBLIC SI EXPONER EL SETTINGS.PY
-                #'proy_service.context_processors.total_carro_cp_f',
+                'carrito.context_processor.total_carrito_cp',
             ],
         },
     },

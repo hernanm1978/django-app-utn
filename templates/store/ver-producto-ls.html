@@ -84,7 +84,7 @@
             console.log(json[0].idproducto.toString())
             console.log(json[0].cantidad.toString())
             localStorage.setItem(json[0].idproducto.toString(), json[0].cantidad.toString());
-            location.reload();
+            {% comment %} location.reload(); {% endcomment %}
             console.log("ok++++++++++++++++++++++++");
             window.location.replace("{% url 'store_index' %}");
             

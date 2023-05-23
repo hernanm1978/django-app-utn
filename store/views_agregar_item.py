@@ -18,20 +18,21 @@ def agregar_item(request, *args, **kwargs):
         cantidad = 0
         if int(valor) >= stock_actual:
             cantidad = int(valor)
-
-        elif len(carro) > 0:
-            if f"hmstore_{idproducto_rec}" in carro.keys():
-                cantidad = int(carro[f"hmstore_{idproducto_rec}"]) + int(valor)
-                print("aca")
-                print(carro)
-            else:
-                cantidad = int(valor)
-                print("aqui")
         else:
-            cantidad = int(valor)
-            print("por el else abajo")
-            # cantidad = int(valor) + 1
-            # print("aca estamos")
+            cantidad = int(valor)+1
+            print("aqui")
+
+        # elif len(carro) > 0:
+        #     if f"hmstore_{idproducto_rec}" in carro.keys():
+        #         cantidad = int(carro[f"hmstore_{idproducto_rec}"]) + int(valor)
+        #         print("aca")
+        #         print(carro)
+
+        # else:
+        #     cantidad = int(valor)
+        #     print("por el else abajo")
+        #     # cantidad = int(valor) + 1
+        #     # print("aca estamos")
         print("cantidad -->", cantidad)
         print("valor ----->", valor)
         # ###########################################
