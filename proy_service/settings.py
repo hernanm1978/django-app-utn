@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'store.apps.StoreConfig',
     'contacto.apps.ContactoConfig',
     #'store.apps.Store.Config',
+    'carrito.apps.CarritoConfig',
 ]
 
 MIDDLEWARE = [
@@ -146,7 +147,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Agregado para utilizar django-registration-redux
-LOGIN_REDIRECT_URL = 'test'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = "usuarios/login/"
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 SITE_ID = 1

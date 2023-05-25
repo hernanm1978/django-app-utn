@@ -7,32 +7,25 @@ def agregar_item(request, *args, **kwargs):
     if request.method == "GET":
         idproducto = request.GET.get("cada_producto_id")
         valor = request.GET.get("valor")
+        # if valor is None:
+        #     print("ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        #     valor = 1
+        print("idddddddddddddddddddddddd",idproducto)
         carro = request.session.get("carro")
         idproducto_rec = idproducto[8:]
         idproducto_rec = int(idproducto_rec)
         el_prod = Store.objects.get(id=idproducto_rec)
         print(el_prod.cantidad_disponible)
-        print("stock")
+        print("valor", valor)
         print(carro)
         stock_actual = int(el_prod.cantidad_disponible)
-        cantidad = 0
+        cantidad = int(valor)
         if int(valor) >= stock_actual:
             cantidad = int(valor)
         else:
-            cantidad = int(valor)+1
+            cantidad = int(valor)
             print("aqui")
-
-        # elif len(carro) > 0:
-        #     if f"hmstore_{idproducto_rec}" in carro.keys():
-        #         cantidad = int(carro[f"hmstore_{idproducto_rec}"]) + int(valor)
-        #         print("aca")
-        #         print(carro)
-
-        # else:
-        #     cantidad = int(valor)
-        #     print("por el else abajo")
-        #     # cantidad = int(valor) + 1
-        #     # print("aca estamos")
+            
         print("cantidad -->", cantidad)
         print("valor ----->", valor)
         # ###########################################
@@ -61,3 +54,4 @@ def agregar_item(request, *args, **kwargs):
         print("ttoal carro", total_carro)
         params["total_carro"] = total_carro
         return HttpResponse(data_json, mimetype)
+    

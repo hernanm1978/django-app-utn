@@ -67,10 +67,10 @@
       return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
   }
 
-  function AgregarI(cada_producto_id, valor) {
+  function AgregarI(cada_producto_id, res) {
     "use strict";
-
-    console.log(cada_producto_id, valor)
+    console.log("cada-producto_id, valor")
+    console.log(cada_producto_id, res)
     $.ajax({
         beforeSend : function (xhr, settings) {
             if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -79,8 +79,9 @@
         },
         url : "/store/agregar_item/",
         type : "GET",
-        data : { cada_producto_id:cada_producto_id, valor:valor},
+        data : { cada_producto_id:cada_producto_id, valor:res},
         success : function (json) {
+            console.log("json")
             console.log(json[0].idproducto.toString())
             console.log(json[0].cantidad.toString())
             localStorage.setItem(json[0].idproducto.toString(), json[0].cantidad.toString());
@@ -128,14 +129,22 @@
           if(clave == cada_producto_id){
               console.log("-----1112------")
               console.log(clave);
+              console.log("valor");
               console.log(valor);
-              valor = el_valor;
-              console.log("-----1112------")
+              console.log("elvalor");
+              console.log(el_valor);
+              //let res = el_valor*1 + valor*1;
+              var res1 = parseInt(el_valor)+parseInt(valor);
+              var res = res1.toString();
+              console.log(valor, el_valor);
+              console.log(res);
+              console.log("-----1112------");
           }else{
               console.log("no hay coincidenciaaaa");
+              var res = valor
           }   
       }
-      AgregarI(cada_producto_id, valor);
+      AgregarI(cada_producto_id, res);
       {% comment %} window.location.href = "{% url 'store_index' %}"; {% endcomment %}
       {% comment %} window.location.replace("{% url 'store_index' %}"); {% endcomment %}
 

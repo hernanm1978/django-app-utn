@@ -1,7 +1,14 @@
 {% extends "layout.html" %}
 {% load static %}
+{% load carrito_tags %}
 {% block body %}
-
+{% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <i class="fa-solid fa-circle-exclamation fa-beat"></i>
+        <strong>{{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
 <section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -12,91 +19,90 @@
                 <div class="col-lg-8">
                   <div class="p-5">
                     <div class="d-flex justify-content-between align-items-center mb-5">
-                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                      <h6 class="mb-0 text-muted">3 items</h6>
+                      <h1 class="fw-bold mb-0 text-black">Carrito de Compras</h1>
+                      <h6 class="mb-0 text-muted">Seleccionaste {{total_carrito_2}} Productos</h6>
                     </div>
                     <hr class="my-4">
-  
-                    <div class="row mb-4 d-flex justify-content-between align-items-center">
-                      <div class="col-md-2 col-lg-2 col-xl-2">
-                        <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-                          class="img-fluid rounded-3" alt="Cotton T-shirt">
+                    {% for producto in los_productos %}
+                      <div class="row mb-4 d-flex justify-content-between align-items-center">
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                          <img
+                            src="/media/{{producto.imagen}}"
+                            class="img-fluid rounded-3" alt="Cotton T-shirt">
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-3">
+                          <h6 class="text-black mb-0">{{producto.producto}}</h6>
+                          <h6 class="text-muted">{{producto.descripcion_corta}}</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                          <button class="btn btn-link px-1"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                            <i class="fa-solid fa-minus fa-2xs"></i>
+                          </button>
+    
+                          <input id="form1" min="0" name="quantity" value="{{producto | carrito_cantidad_producto:request.session.carro}}" type="number"
+                            class="form-control form-control-sm" />
+                              
+                          <button class="btn btn-link px-1"
+                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                            <i class="fa-solid fa-plus fa-2xs"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                          <h6 class="mb-0">$ {{producto | preciototal_item:request.session.carro}}</h6>
+                        </div>
+                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                          <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                        </div>
                       </div>
-                      <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h6 class="text-muted">Shirt</h6>
-                        <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                        </button>
-  
-                        <input id="form1" min="0" name="quantity" value="1" type="number"
-                          class="form-control form-control-sm" />
-  
-                        <button class="btn btn-link px-2"
-                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h6 class="mb-0">€ 44.00</h6>
-                      </div>
-                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                      </div>
-                    </div>
-  
+                    {% endfor %}
   
                     <hr class="my-4">
   
                     <div class="pt-5">
-                      <h6 class="mb-0"><a href="#!" class="text-body"><i
-                            class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                      <h6 class="mb-0"><a href="{% url 'store_index' %}" class="text-body"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i>Volver a la Tienda</a></h6>
                     </div>
                   </div>
                 </div>
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
-                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen Compra</h3>
                     <hr class="my-4">
   
                     <div class="d-flex justify-content-between mb-4">
-                      <h5 class="text-uppercase">items 3</h5>
-                      <h5>€ 132.00</h5>
+                      <h5 class="text">Subtotal</h5>
+                      <h5>$ {{los_productos | subtotal_compra:request.session.carro}}</h5>
                     </div>
   
-                    <h5 class="text-uppercase mb-3">Shipping</h5>
+                    <h5 class="text mb-3">Envio</h5>
   
                     <div class="mb-4 pb-2">
                       <select class="select">
-                        <option value="1">Standard-Delivery- €5.00</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
+                        <option value="1">Moto Delivery CABA - $900</option>
+                        <option value="2">Resto Argentina - $3000</option>
+                        <option value="3">Retiro en Scursal - $ 0</option>
                       </select>
                     </div>
   
-                    <h5 class="text-uppercase mb-3">Give code</h5>
+                    <h6 class="text-uppercase mb-2">Codigo Descuento</h6>
   
-                    <div class="mb-5">
+                    <div class="mb-3">
                       <div class="form-outline">
                         <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
-                        <label class="form-label" for="form3Examplea2">Enter your code</label>
+                        <label class="form-label" for="form3Examplea2">Ingresa aca el codigo de descuento</label>
                       </div>
                     </div>
   
-                    <hr class="my-4">
+                    <hr class="my-3">
   
                     <div class="d-flex justify-content-between mb-5">
-                      <h5 class="text-uppercase">Total price</h5>
-                      <h5>€ 137.00</h5>
+                      <h5 class="text-uppercase">Total compra</h5>
+                      <h5>$ 137.00</h5>
                     </div>
   
                     <button type="button" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark">Register</button>
+                      data-mdb-ripple-color="dark">Pagar</button>
   
                   </div>
                 </div>
