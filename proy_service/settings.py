@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'contacto.apps.ContactoConfig',
     #'store.apps.Store.Config',
     'carrito.apps.CarritoConfig',
+    'costoenvios.apps.CostoEnviosConfig',
 ]
 
 MIDDLEWARE = [

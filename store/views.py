@@ -25,15 +25,15 @@ def index(request):
     params['cantidad_total'] = Store.objects.count()
     #params["total_carro"] = ""
     temp = request.session.get("seleccion_productos")
-    if "total_carro" in request.session:
-        params["total_carro"] = request.session["total_carro"]
-        return render(request, 'store/index.html', params)
+    # if "total_carro" in request.session:
+    #     params["total_carro"] = request.session["total_carro"]
+        # return render(request, 'store/index.html', params)
 
-    else:
-        params["total_carro"] = 0
-        print("temp",temp)
-        return render(request, 'store/index.html', params)
-
+    # else:
+    #     params["total_carro"] = 0
+    #     print("temp",temp)
+    #     return render(request, 'store/index.html', params)
+    return render(request, 'store/index.html', params)
 
 
 def ver_imagen(request, producto_id):

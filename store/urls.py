@@ -23,7 +23,10 @@ from store.views import VerProductoLs
 from store.views import barra_busqueda_ajax
 from store.views import BuscarProducto
 from store.views import BuscarProducto2
+from store.quitar import quitar
+from store.crear_localstorage import crear_localstorage
 from store import views_agregar_item
+from store import views_agregar_items_carro
 
 
 urlpatterns = [
@@ -34,7 +37,11 @@ urlpatterns = [
     # de aca en adelante es para funcionar con el tema de localStorage (jquery y ajax)
     path('<int:producto_id>/ver-producto-ls/', VerProductoLs.as_view(), name='ver-producto-ls'),
     path("agregar_item/", views_agregar_item.agregar_item, name="agregar_item"),
+    path("agregar_items_carro/", views_agregar_items_carro.agregar_items_carro, name="agregar_items_carro"),
     path("busqueda_ajax/", barra_busqueda_ajax, name="busqueda_ajax"),
     path("buscar_producto/", BuscarProducto.as_view(), name="buscar_producto"),
     path("buscar_producto2/", BuscarProducto2.as_view(), name="buscar_producto2"),
+    path("quitar_producto/", quitar, name="quitar_producto"),
+    path("crear_ls/", crear_localstorage, name="crear_ls"),
+
 ]

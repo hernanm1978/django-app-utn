@@ -24,7 +24,7 @@
                     </div>
                     <hr class="my-4">
                     {% for producto in los_productos %}
-                      <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="row mb-4 d-flex justify-content-between align-items-center product_data">
                         <div class="col-md-2 col-lg-2 col-xl-2">
                           <img
                             src="/media/{{producto.imagen}}"
@@ -34,25 +34,29 @@
                           <h6 class="text-black mb-0">{{producto.producto}}</h6>
                           <h6 class="text-muted">{{producto.descripcion_corta}}</h6>
                         </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                          <button class="btn btn-link px-1"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+
+                        <div id="hmstore_{{producto.id}}"class="col-md-1 col-lg-1 col-xl-1 input-group text-center mb-1 product_data" style="width:140px;">
+                          <button class="input-group-text decrement-btn quitar">-</button>
+                          <input type="text" name="quantity" class="form-control qty-input text-center" value="{{producto | carrito_cantidad_producto:request.session.carro}}">
+                          <button class="input-group-text increment-btn agregar">+</button>
+                        </div>
+
+                        {% comment %} <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                          <button class="btn btn-link px-1 decrement-btn">
                             <i class="fa-solid fa-minus fa-2xs"></i>
                           </button>
-    
-                          <input id="form1" min="0" name="quantity" value="{{producto | carrito_cantidad_producto:request.session.carro}}" type="number"
-                            class="form-control form-control-sm" />
-                              
-                          <button class="btn btn-link px-1"
-                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                            <i class="fa-solid fa-plus fa-2xs"></i>
+                          <input class="form-control text-center me-3 vervalor" name="quantity" id="inputQuantity" type="text" value="{{producto | carrito_cantidad_producto:request.session.carro}}" style="max-width: 3rem">
+                          {% comment %} <input id="form1" min="0" name="quantity" value="{{producto | carrito_cantidad_producto:request.session.carro}}" type="number"
+                            class="form-control qty-input form-control-sm" />      
+                          <button class="btn btn-link px-1 increment-btn">
+                          <i class="fa-solid fa-plus fa-2xs"></i>
                           </button>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                          <h6 class="mb-0">$ {{producto | preciototal_item:request.session.carro}}</h6>
+                        </div> {% endcomment %}
+                        <div class="col-md-3 col-lg-3 col-xl-2 offset-lg-1">
+                          <h5 class="mb-0">$ {{producto | preciototal_item:request.session.carro}}</h>
                         </div>
                         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                          <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                          <a id="el{{producto.id}}" href="#!" class="text-muted eliminar_producto"><i class="fas fa-times eliminar_producto"></i></a>
                         </div>
                       </div>
                     {% endfor %}
@@ -98,7 +102,7 @@
   
                     <div class="d-flex justify-content-between mb-5">
                       <h5 class="text-uppercase">Total compra</h5>
-                      <h5>$ 137.00</h5>
+                      <h5>$ {{los_productos | subtotal_compra:request.session.carro}}</h5>
                     </div>
   
                     <button type="button" class="btn btn-dark btn-block btn-lg"
@@ -113,5 +117,34 @@
       </div>
     </div>
   </section>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+  <script
+  src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+  crossorigin="anonymous">
+  </script>
+  <script
+  src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+  integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+  crossorigin="anonymous">
+  </script>
+  <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/mi_js.js' %}"></script>
+{% endblock %}
+{% block javascript %}
+{% comment %} <script src="https://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>  {% endcomment %}
+{% comment %} <script src="http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script> {% endcomment %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script
+src="https://code.jquery.com/jquery-3.6.4.min.js"
+integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+crossorigin="anonymous">
+</script>
+<script
+src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"
+integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0="
+crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="{% static 'js/mi_js.js' %}"></script>
+{% comment %} <script type="text/javascript" src="{% static 'js/juan_ajax.js' %}"></script> {% endcomment %}
 {% endblock %}

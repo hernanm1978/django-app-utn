@@ -42,15 +42,7 @@ class Carrito(View):
                     val = int(val)
 
                     ids2.append(val)     
-            
-                
-            # ##########################################################
-            # PARA USUARIO
-            # ###########################################################
-            # user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
-            # ##########################################################
-            # PARA USUARIO
-            # ###########################################################
+
             art_venta = Store.objects.filter(pk__in=ids2)
             print(art_venta)
             params["los_productos"] = art_venta
